@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+a{
+	text-decoration-line: none;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 10;
+  position: absolute;
+  right: 0px;
+  top: -2px;
+  color: #354044;
+}
+
+.material-symbols-outlined.hide {
+	display: none;
+}
+
+
+
+body{
+	height: 100%;
+}
+
+main{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#box1 #box2{
+	height: 30px;
+	position: relative;
+	align-items: center;
+	margin: 10px 0px;
+}
+
+#box2 div{
+	position: absolute;
+	right: 10px;
+	top: 25%;
+}
+
+#box2 form{
+	border-radius: 5px;
+}
+#box1 #collecter{
+	margin:10px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	position: relative;
+}	
+
+#collecter .none{
+	/*border: 1px solid black;*/
+}
+
+#collecter .day{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;	
+	border-bottom: 1px solid black;
+	background-color: #777;
+	color: white;
+	border-radius: 2px;
+}
+
+#collecter .date{
+	font-size: 18px;
+	height: 110px;
+	/*border: 1px solid black;*/
+}
+.date_num{
+	position: relative;
+	border-bottom: 1px solid #777;	
+	
+}
+
+
+.date_note{
+	margin-top: 3px;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+.date_note a{
+	color: black;
+}
+
+.date_subject{
+	font-weight: 700;
+}
+.date_content{
+	width: 140px;
+	white-space : nowrap;
+	overflow : hidden;
+	text-overflow: ellipsis;
+}
+.note{
+	background-color: rgba(255,255,255,0.5);
+	position: absolute;
+	z-index: 3;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.notebox{
+	width: 50%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	position: relative;
+	border: 1px solid #354044;
+	border-radius: 5px;
+	background-color: white;
+}
+.partnote{
+	width: 90%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.notebox .content{
+	width: 90%;
+	height: 40%;
+	border: 1px solid #354044;
+	position: relative;
+}
+.buttonbox{
+	position: absolute;
+	top: 0%;
+	border-bottom: 1px solid #354044;
+	width: 100%;
+	height: 30px;
+	background-color: #354044;
+	color: white;
+}
+
+.buttonbox .button{
+	position: absolute;
+	right: 3px;
+	top: 3px;
+}
+
+.buttonbox .updatebutton{
+	position: absolute;
+	right: 60px;
+	top: 3px;
+}
+
+.buttonbox div{
+	position: absolute;
+	top: 3px;
+	left: 3px;
+}
+.date .hide{
+	position: absolute;
+	display: none;
+}
+
+.combutton{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+}
+
+.combutton input{
+	position: absolute;
+	right: 3px;
+}
