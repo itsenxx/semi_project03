@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%@ page import="java.lang.Exception" %>    
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
@@ -8,6 +11,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Sign Up</title>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous">
+</script>
     <style>
         @font-face {
             font-family: 'SOYOMapleBoldTTF';
@@ -80,42 +88,44 @@
 
 <div class="signup-container">
     <h1>CompuZoon SignUp</h1>
-    <form class="signup-form" action="" method="post" id="form1" onsubmit="return false">
-        <input type="text" id="emp_Id" name="emp_Id" placeholder="id"><br>
-        <input type="text" id="emp_Name" name="emp_Name" placeholder="name"><br>
-        <input type="password" id="emp_Pw" name="emp_Pw" placeholder="pw"><br>
-        <select id="position" name="position">
+    <form class="signup-form" action="/member/signUp" method="post" id="form1" onsubmit="return false">
+        <input type="text" id="emp_id" name="emp_id" placeholder="id"><br>
+        <input type="text" id="emp_name" name="emp_name" placeholder="name"><br>
+        <input type="password" id="emp_pw" name="emp_pw" placeholder="pw"><br>
+        <select id="emp_pos" name="emp_pos">
             <option value="" disabled selected hidden>Select the position</option>
             <option value="staff">staff</option>
             <option value="Manager">Manager</option>
             <option value="Master">Master</option>
         </select>
         <br>
+
         <input id="btn" type="submit" value="Sign up" onClick="javascript:checkBox();">
     </form>
 </div>
 
 <script>
+
     function checkBox() {
-        if (!$('#emp_Id').val()) {
+        if (!$('#emp_id').val()) {
             alert('아이디를 입력하세요');
-            $('#emp_Id').focus();
+            $('#emp_id').focus();
             return;
         }
 
-        if (!$('#emp_Name').val()) {
+        if (!$('#emp_name').val()) {
             alert('이름을 입력하세요.');
-            $('#emp_Name').focus();
+            $('#emp_name').focus();
             return;
         }
-        if (!$('#emp_Pw').val()) {
+        if (!$('#emp_pw').val()) {
             alert('암호를 입력하세요.');
-            $('#emp_Pw').focus();
+            $('#emp_pw').focus();
             return;
         }
-        if (!$('#position').val()) {
+        if (!$('#emp_pos').val()) {
             alert('직급을 선택하세요');
-            $('#position').focus();
+            $('#emp_pos').focus();
             return;
         }
         document.getElementById('form1').submit();
