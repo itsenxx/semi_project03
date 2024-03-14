@@ -13,16 +13,16 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration
-//@ComponentScan(basePackages = {"com.example.demo.service"})
-//@MapperScan(basePackages = {"com.example.demo.mapper"})
+@ComponentScan(basePackages = {"com.example.demo.service"})
+@MapperScan(basePackages = {"com.example.demo.mapper"})
 public class DBConfig {
     @Bean
     public DataSource dataSource(){
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-        hikariConfig.setJdbcUrl("jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl");
-        hikariConfig.setUsername("ora_user");
-        hikariConfig.setPassword("1234");
+        hikariConfig.setJdbcUrl("jdbc:log4jdbc:oracle:thin:@1.220.247.78:1522:orcl");
+        hikariConfig.setUsername("semi_project3");
+        hikariConfig.setPassword("123453");
 
         hikariConfig.setPoolName("oracle-project");
         hikariConfig.setMaximumPoolSize(5);
@@ -31,12 +31,12 @@ public class DBConfig {
         return dataSource;
     }
 
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactory() throws Exception {
-//        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-//        sqlSessionFactory.setDataSource(dataSource());
-//        sqlSessionFactory.setMapperLocations(
-//                new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/**/*.xml"));
-//        return (SqlSessionFactory) sqlSessionFactory.getObject();
-//    }
+    @Bean
+    public SqlSessionFactory sqlSessionFactory() throws Exception {
+        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+        sqlSessionFactory.setDataSource(dataSource());
+        sqlSessionFactory.setMapperLocations(
+                new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/**/*.xml"));
+        return (SqlSessionFactory) sqlSessionFactory.getObject();
+    }
 }
