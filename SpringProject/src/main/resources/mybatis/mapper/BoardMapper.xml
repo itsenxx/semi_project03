@@ -7,7 +7,7 @@
 			select *
 			]]>
 			from calendar
-			where TO_DATE(TO_CHAR(insert_date,'yyyy-mm'),'yyyy-mm')
+			where TO_DATE(TO_CHAR(creation_date,'yyyy-mm'),'yyyy-mm')
 			        = TO_DATE(#{dateS},'yyyy-mm')
 
     </select>
@@ -19,4 +19,40 @@
 			from put
 			where status = '출고'
 	</select>
+	
+	<select id="readProd" resultType="com.example.demo.domain.ProductVO">
+		<![CDATA[
+			select part,part_name as partName, price partPrice
+			]]>
+			from product
+	</select>
+	
+	<select id="readProduct" resultType="com.example.demo.domain.ProductsVO">
+		<![CDATA[
+			select *
+			]]>
+		from ${name}
+	</select>
+	
+	<insert id="insertSchedule">
+	    insert into calendar(emp_num, emp_name, cl_subject, cl_content, creation_date)
+	    values (#{emp_num}, #{emp_name}, #{cl_subject}, #{cl_content}, #{creation_date})
+	</insert>
+	<insert id="insertSchedulePart">
+	    insert into put(put_num,status,part,part_name,part_ea)
+	    values (1, '출고', #{part},#{name},#{ea})
+	</insert>
+	<update id="outPutPart">
+		update ${part} set ea = ea-#{ea} , pd_ea = pd_ea+#{ea} where name = #{name}
+	</update>
+	
+	<update id="ScheduleModify">
+		update calendar set cl_subject=#{cl_subject} , cl_content = #{cl_content} where cl_num = #{sch_num}
+	</update>
+	<update id="SchedulePartModify">
+		update put set part = #{part} , part_name = #{name}, part_ea = #{ea} where st_num = #{sch_num}
+	</update>
+	<update id="outPutPartModify">
+		update ${part} set ea = ea+#{ea}-#{eaModify} , pd_ea = pd_ea-#{ea}+#{eaModify} where name = #{name}
+	</update>
 </mapper>

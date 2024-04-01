@@ -18,4 +18,5 @@ public class CalendarVO {
     private String year;
     private String month;
     private String date;
+    private String cl_date;
 }

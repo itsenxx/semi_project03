@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.ProductMapper">
+    <insert id="insertProduct">
+        INSERT INTO
+            PRODUCT
+        VALUES
+            (product_sq.nextval, #{part}, #{partName}, #{partPrice})
+    </insert>
+
+    <select id="getAllProducts" resultType="com.example.demo.domain.ProductVO">
+        SELECT
+            part, part_name as partName, price as partPrice
+        FROM
+            product
+    </select>
+
+    <select id="isProductNameExists" resultType="boolean" parameterType="java.lang.String">
+        <![CDATA[
+        SELECT
+            CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+        FROM
+            product
+        WHERE
+            part_name = #{productName}
+         ]]>
+    </select>
+
+    <select id="isProductInStock" resultType="boolean" parameterType="java.lang.String">
+        <![CDATA[
+        SELECT
+            CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+        FROM
+            product
+        WHERE
+            part_name = #{productName}
+         ]]>
+    </select>
+
+
+    <select id="findPartNamesByType" resultType="String" parameterType="String">
+        SELECT
+            part_name
+        FROM
+            product
+        WHERE
+            part = #{partType}
+    </select>
+
+</mapper>

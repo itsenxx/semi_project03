@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.CargoMapper">
+
+    <insert id="insertCargo">
+        INSERT INTO
+            cargo (cg_num, emp_num, emp_name, part, part_name, part_ea, cg_subject, cg_content)
+        VALUES (cargo_sq.nextval, 1234, 'test', #{part}, #{part_name}, #{part_ea}, 'INSERT TEST', '!!!!INSERT TEST!!!')
+    </insert>
+
+    <select id="getAllCargo" resultType="com.example.demo.domain.CargoVO">
+        SELECT
+            part, part_name, part_ea
+        FROM
+            cargo
+    </select>
+
+
+</mapper>

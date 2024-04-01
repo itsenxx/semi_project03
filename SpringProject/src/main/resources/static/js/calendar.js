@@ -1,20 +1,38 @@
 console.log('Calendar Module...');
 
-var calendarService = (function(){
 
-    function scheduleRead(date, callback, error) {
+    function scheduleAdd(Schedule, callback, error) {
+
+        $.ajax({
+            // request처리
+            type : 'post',                                      // form의 method속성 값
+            url : '/board/newSchedule',                               // form의 action값
+            data : JSON.stringify(Schedule),                       // json으로 string처리하면서 파라미터 전달
+            contentType : "application/json; charset=utf-8",    // content-type지정
+            // response처리
+            success : function(result, status, xhr) {           // call 성공시 오는 처리되는 함수
+                if (callback) {
+                    callback(result);
+                }
+            },
+            error : function(xhr, status, er) {                 // call 실패시 오는 처리되는 함수
+                if (error) {
+                    error(er);
+                }
+            }
+        });
+    }
+    
+    function productRead(part, callback, error) {
         //스케줄 읽기
 
         $.ajax({
             //request 처리
-            type : 'post',           // form의 method속성 값
-            url : '/replies/new',    // form의 action값
-            data : JSON.stringify(reply),    // json으로 string처리
-            contentType : "application/json; charset=utf-8",  // content-type지정
-            //response 처리
-            success : function(result, status, xhr) { // call 성공시 오는 처리되는 함수
+            type : 'get',           // form의 method속성 값
+            url : 'read/product/'+ part,    // form의 action값
+            success : function(data, status, xhr) { // call 성공시 오는 처리되는 함수
                 if (callback) {
-                    callback(result);
+                    callback(data);
                 }
             },
             error : function(xhr, status, er) { // call 실패시 오는 처리되는 함수
@@ -24,25 +42,26 @@ var calendarService = (function(){
             }
         });
     }
-}
+    
+    function schModify(schModify, callback, error) {
+        //스케줄 읽기
 
-$(document).ready(function(){
-    for(let i=0; i<35; i++){
-        $('.date').children('.date_note:eq('+i+')').click(function(){
-            $('.date').children('.note:eq('+i+')').removeClass('hide');
-        });
-        $('.date').children('.note:eq('+i+')').children('.notebox:eq(0)').children('.buttonbox:eq(0)').children('.button:eq(0)').click(function(){
-            $('.date').children('.note:eq('+i+')').addClass('hide');
+        $.ajax({
+            // request처리
+            type : 'post',                                      // form의 method속성 값
+            url : '/board/scheduleModify',                               // form의 action값
+            data : JSON.stringify(schModify),                       // json으로 string처리하면서 파라미터 전달
+            contentType : "application/json; charset=utf-8",    // content-type지정
+            // response처리
+            success : function(result, status, xhr) {           // call 성공시 오는 처리되는 함수
+                if (callback) {
+                    callback(result);
+                }
+            },
+            error : function(xhr, status, er) {                 // call 실패시 오는 처리되는 함수
+                if (error) {
+                    error(er);
+                }
+            }
         });
     }
-});
-
-$(document).ready(function(){
-    for(let i=0; i<35; i++){
-        $('.date').children('.date_num:eq('+i+')').hover(function(){
-            $('.date').children('.date_num:eq('+i+')').children('.material-symbols-outlined:eq(0)').removeClass('hide');
-        }, function(){
-            $('.date').children('.date_num:eq('+i+')').children('.material-symbols-outlined:eq(0)').addClass('hide');
-        });
-    }
-});

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BoardMapper">
+    <select id="cl_story" resultType="com.example.demo.domain.CalendarVO">
+        <![CDATA[
+			select *
+			]]>
+			from calendar
+			where TO_DATE(TO_CHAR(insert_date,'yyyy-mm'),'yyyy-mm')
+			        = TO_DATE(#{dateS},'yyyy-mm')
+
+    </select>
+
+	<select id="cl_put" resultType="com.example.demo.domain.PutVO">
+		<![CDATA[
+			select *
+			]]>
+			from put
+			where status = '출고'
+	</select>
+	<select id="readProduct" resultType="com.example.demo.domain.ProductVO">
+		<![CDATA[
+			select *
+			]]>
+		from ${name}
+	</select>
+</mapper>
